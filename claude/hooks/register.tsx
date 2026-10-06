@@ -5,15 +5,16 @@ import { sceneCells } from './scene'
 import { readSettings } from './settings'
 import { modeForTool, statusText } from './status'
 
+let state: AnimationState = { mode: 'idle', since: Date.now(), frame: 0 }
+
+function setMode($: { ui: { invalidate: (event: string) => void } }, mode: Mode) {
+  state = transition(state, mode, Date.now())
+  $.ui.invalidate('ui.render')
+}
+
 export function register(on: any, options: any = {}) {
   const settings = readSettings(options)
-  let state: AnimationState = { mode: 'idle', since: Date.now(), frame: 0 }
   let bodyColumns = 80
-
-  const setMode = ($: { ui: { invalidate: (event: string) => void } }, mode: Mode) => {
-    state = transition(state, mode, Date.now())
-    $.ui.invalidate('ui.render')
-  }
 
   on('session.start', async ($, e, next) => {
     setMode($, 'idle')

@@ -171,21 +171,38 @@ def astronaut(state="idle", frame=0):
 
 
 def satellite():
-    c = Canvas(16 * SCALE, 12 * SCALE)
-    rect(c, 0, 4, 4, 4, "B"); rect(c, 1, 5, 2, 2, "h")
-    rect(c, 5, 3, 6, 6, "s"); rect(c, 6, 4, 4, 4, "i")
-    rect(c, 12, 4, 4, 4, "B"); rect(c, 13, 5, 2, 2, "h")
-    rect(c, 7, 1, 2, 2, "p"); rect(c, 7, 9, 2, 2, "p")
+    c = Canvas(24 * SCALE, 20 * SCALE)
+    # Framed solar wings with visible cell lines.
+    rect(c, 0, 5, 7, 10, "D"); rect(c, 1, 6, 5, 8, "B")
+    rect(c, 2, 6, 1, 8, "h"); rect(c, 4, 6, 1, 8, "h")
+    rect(c, 17, 5, 7, 10, "D"); rect(c, 18, 6, 5, 8, "B")
+    rect(c, 19, 6, 1, 8, "h"); rect(c, 21, 6, 1, 8, "h")
+    # Antenna and central bus.
+    rect(c, 10, 1, 4, 4, "D"); rect(c, 11, 0, 2, 2, "p")
+    rect(c, 11, 4, 2, 3, "m")
+    rect(c, 7, 7, 10, 8, "D"); rect(c, 8, 8, 8, 6, "s")
+    rect(c, 9, 9, 6, 4, "i"); rect(c, 10, 10, 2, 2, "h")
+    rect(c, 11, 15, 2, 3, "m"); rect(c, 9, 18, 6, 1, "l")
     return c
 
 
 def rocket():
-    c = Canvas(12 * SCALE, 20 * SCALE)
-    rect(c, 5, 0, 2, 1, "p"); rect(c, 4, 1, 4, 2, "l")
-    rect(c, 3, 3, 6, 8, "w"); rect(c, 4, 4, 4, 5, "h")
-    rect(c, 5, 5, 2, 2, "N"); rect(c, 2, 8, 2, 4, "b")
-    rect(c, 8, 8, 2, 4, "b"); rect(c, 5, 11, 2, 3, "y")
-    rect(c, 5, 14, 2, 2, "r"); rect(c, 5, 16, 2, 2, "h")
+    c = Canvas(18 * SCALE, 23 * SCALE)
+    # Dark outer hull makes the pointed body and fins read at a glance.
+    rect(c, 8, 0, 2, 1, "p")
+    rect(c, 6, 1, 6, 2, "D"); rect(c, 5, 3, 8, 8, "D")
+    rect(c, 4, 10, 10, 4, "D")
+    rect(c, 3, 10, 3, 5, "D"); rect(c, 12, 10, 3, 5, "D")
+    rect(c, 7, 2, 4, 2, "l"); rect(c, 6, 4, 6, 7, "w")
+    rect(c, 7, 4, 4, 6, "h"); rect(c, 8, 5, 3, 4, "c")
+    rect(c, 8, 6, 2, 2, "N"); rect(c, 9, 6, 1, 1, "p")
+    rect(c, 6, 11, 6, 2, "l")
+    rect(c, 4, 11, 2, 3, "b"); rect(c, 12, 11, 2, 3, "b")
+    rect(c, 5, 12, 1, 2, "h"); rect(c, 12, 12, 1, 2, "h")
+    # Layered exhaust separates the warm core from the blue plume.
+    rect(c, 7, 14, 4, 2, "y"); rect(c, 8, 14, 2, 3, "p")
+    rect(c, 7, 16, 4, 3, "r"); rect(c, 8, 16, 2, 4, "y")
+    rect(c, 6, 19, 6, 3, "h"); rect(c, 8, 20, 2, 3, "i")
     return c
 
 
@@ -195,15 +212,21 @@ def moon():
         half = int((max(0, 256 - (y - 15) ** 2) ** 0.5))
         left, right = max(0, 15 - half), min(31, 16 + half)
         for x in range(left, right + 1):
-            shade = "m" if x < left + 3 or y > 27 else ("l" if y < 4 and x > 7 else "s")
+            shade = "m" if x < left + 3 or y > 27 else ("l" if y < 5 and x > 6 else "s")
             rect(c, x, y, 1, 1, shade)
-    # Craters use stepped rims and darker centers, without smoothing.
-    for x, y, w, h in ((7, 9, 5, 4), (20, 7, 4, 5), (14, 18, 6, 4), (6, 23, 4, 3), (23, 20, 3, 2)):
-        rect(c, x, y, w, 1, "l")
-        rect(c, x, y + h - 1, w, 1, "m")
-        rect(c, x, y + 1, 1, h - 2, "l")
-        rect(c, x + w - 1, y + 1, 1, h - 2, "m")
+    # Stepped craters have a lit rim and an offset shadow for visible depth.
+    for x, y, w, h in ((6, 7, 6, 5), (19, 6, 5, 6), (13, 16, 8, 6),
+                       (4, 20, 5, 4), (23, 18, 4, 3), (13, 3, 3, 2),
+                       (10, 26, 4, 2), (21, 26, 3, 2)):
+        rect(c, x, y, w - 1, 1, "l")
+        rect(c, x, y + 1, 1, max(1, h - 2), "l")
         rect(c, x + 1, y + 1, w - 2, h - 2, "m")
+        rect(c, x + w - 1, y + 1, 1, max(1, h - 2), "V")
+        rect(c, x + 1, y + h - 1, w - 1, 1, "V")
+    # Scattered small pits keep the broad surface from reading as a flat disk.
+    for x, y, color in ((15, 10, "m"), (26, 13, "l"), (11, 14, "l"),
+                        (8, 17, "V"), (17, 25, "l"), (5, 14, "m"), (25, 24, "l")):
+        rect(c, x, y, 1, 1, color)
     return c
 
 
