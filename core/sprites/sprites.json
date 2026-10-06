@@ -1,0 +1,11 @@
+{
+  "grid": { "width": 32, "height": 34, "pixelSize": 6 },
+  "sprites": {
+    "astronaut": "pixel-built suit, rounded helmet, navy visor, blue backpack and tiny boots",
+    "moon": "blue-gray lunar ground with blocky craters",
+    "rocket": "small navy and ice-blue rocket with restrained warm exhaust",
+    "satellite": "compact blue satellite with two solar panels",
+    "stars": "sparse single-pixel and four-point stars"
+  },
+  "states": ["idle", "thinking", "running", "waiting", "failed", "jumping", "review"]
+}

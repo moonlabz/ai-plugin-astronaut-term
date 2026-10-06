@@ -1,0 +1,13 @@
+{
+  "name": "astronaut-term",
+  "owner": { "name": "Astronaut Term contributors" },
+  "metadata": { "description": "Local marketplace for the Astronaut Term Claude Code mod." },
+  "plugins": [
+    {
+      "name": "astronaut-term",
+      "source": "./claude",
+      "description": "A pixel astronaut companion above the Claude Code prompt.",
+      "version": "0.1.0"
+    }
+  ]
+}

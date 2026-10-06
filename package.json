@@ -1,0 +1,28 @@
+{
+  "name": "ai-plugin-astronaut-term",
+  "version": "0.1.0",
+  "description": "A lightweight pixel astronaut terminal companion for Claude Code and Codex.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "astronaut-term": "./bin/install.js"
+  },
+  "files": [
+    ".claude-plugin",
+    "bin",
+    "claude",
+    "codex",
+    "core",
+    "preview",
+    "tools/build_preview.py",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "preview": "python3 tools/build_preview.py",
+    "demo": "python3 tools/build_preview.py --demo",
+    "install-local": "node bin/install.js install",
+    "doctor": "node bin/install.js doctor",
+    "uninstall": "node bin/install.js uninstall"
+  }
+}

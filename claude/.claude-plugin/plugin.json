@@ -1,0 +1,22 @@
+{
+  "name": "astronaut-term",
+  "version": "0.1.0",
+  "description": "A small pixel astronaut above the Claude Code prompt that reacts to turns and tools.",
+  "author": { "name": "Astronaut Term contributors" },
+  "license": "MIT",
+  "keywords": ["mod", "pixel-art", "astronaut", "terminal-pet"],
+  "userConfig": {
+    "speed": {
+      "type": "string", "title": "Animation speed", "description": "How often the astronaut changes frames.",
+      "options": ["slow", "normal", "fast"], "default": "normal"
+    },
+    "sleepAfter": {
+      "type": "number", "title": "Sleep after (seconds)", "description": "Idle time before the astronaut sleeps; 0 keeps it awake.",
+      "default": 120, "min": 0, "max": 3600
+    },
+    "hud": { "type": "boolean", "title": "HUD", "description": "Show a small mission status panel.", "default": false },
+    "statusLine": { "type": "boolean", "title": "Status line", "description": "Show a short generic activity label.", "default": true },
+    "subagents": { "type": "boolean", "title": "Satellite companions", "description": "Show a tiny satellite for agent tasks.", "default": true },
+    "scene": { "type": "boolean", "title": "Moon scene", "description": "Show sparse stars and a moon surface.", "default": true }
+  }
+}

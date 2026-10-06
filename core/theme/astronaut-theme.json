@@ -1,0 +1,24 @@
+{
+  "name": "astronaut-term",
+  "palette": {
+    "navy950": "#07111F",
+    "navy900": "#0B1730",
+    "navy800": "#10244A",
+    "blue700": "#174EA6",
+    "blue600": "#2563EB",
+    "blue500": "#3B82F6",
+    "blue400": "#60A5FA",
+    "blue300": "#93C5FD",
+    "blue200": "#BFDBFE",
+    "moonDark": "#64748B",
+    "moon": "#94A3B8",
+    "moonLight": "#CBD5E1",
+    "white": "#E8F1FF",
+    "warning": "#F5C451",
+    "error": "#F87171",
+    "success": "#60D394"
+  },
+  "character": "astronaut",
+  "scene": "moon",
+  "accent": "rocket"
+}
